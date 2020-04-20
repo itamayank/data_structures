@@ -1,0 +1,29 @@
+
+package mayank.Array;
+
+/**
+ * @author Mayank
+ *
+ */
+public class EquibriumPoint {
+
+	//Equilibrium index of an array is an index such that the sum of elements at lower indexes is equal
+	//to the sum of elements at higher indexes
+	
+	public static void main(String[] args) {
+     int arr[] = {1,2,3,5,4,1,1};
+     int sum =0;
+     int left_sum=0;
+     for(int i=0;i<arr.length;i++) {
+    	 sum += arr[i];
+     }
+     for(int i=arr.length-1;i>=0;i--) {
+    	 sum -= arr[i];
+    	 if(left_sum==sum) {
+    		 System.out.println(i);
+    		 break;
+    	 }
+    	 left_sum += arr[i];
+     }
+}
+}
