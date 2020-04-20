@@ -1,0 +1,30 @@
+Sort elements in group
+
+package mayank.Array;
+
+import java.util.Arrays;
+
+public class GroupSort {
+
+	public static void main(String[] args) {
+    int arr[]= {3, 2, 1, 3, 5, 4, 9, 8, 5};
+    int tempi =0;
+    int k =3;
+    int tempk =k;
+    int n = arr.length;
+    
+    while(tempk<=n) {
+    	for(int i=tempi;i<tempk;i++) {
+    		for(int j=tempi;j<tempk;j++) {
+    		if(arr[i]<arr[j]) {
+    			int temp = arr[i];
+    			arr[i]=arr[j];
+    			arr[j]=temp;
+    		 }
+    		}
+    	}tempi=tempk;
+    	tempk+=k;
+    }
+    System.out.println(Arrays.toString(arr));
+	}
+}
