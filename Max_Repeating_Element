@@ -1,0 +1,40 @@
+Find maximum repeating element from an array which ranges from 1-N
+
+package mayank.Array;
+
+public class MaxRepeatingElement {
+	
+	static int maxRepeating(int arr[], int n, int k) 
+    { 
+        // Iterate though input array, for every element 
+        // arr[i], increment arr[arr[i]%k] by k 
+        for (int i = 0; i< n; i++) 
+            arr[(arr[i]%k)] += k; 
+  
+        // Find index of the maximum repeating element 
+        int max = arr[0], result = 0; 		
+        for (int i = 1; i < n; i++) 
+        { 
+            if (arr[i] > max) 
+            { 
+                max = arr[i]; 
+                result = i; 
+            } 
+        } 
+  
+        /* Uncomment this code to get the original array back 
+        for (int i = 0; i< n; i++) 
+          arr[i] = arr[i]%k; */
+  
+        // Return index of the maximum element 
+       
+        return result; 
+}
+	
+	public static void main(String[] args) {
+		int arr[] = {1,1,1,1,2,2,2,2,2,2,3,3};
+		int n = arr.length-1;
+		int k = 5;
+		System.out.println(maxRepeating(arr, n, k));
+	}
+}
