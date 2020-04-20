@@ -22,7 +22,7 @@ public class BinaryToDecimal {
 		String num = n;
 		int dec_value = 0;
 
-		int base = 1;                                    ///for values larger than int range
+		int base = 1;                                    //for values larger than int range
 
 		int len = num.length();
 		for (int i = len - 1; i >= 0; i--) {
