@@ -24,6 +24,6 @@ public class EquibriumPoint {
     		 break;
     	 }
     	 left_sum += arr[i];
-     }
+     } 
 }
 }
