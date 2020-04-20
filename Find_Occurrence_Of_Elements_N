@@ -1,0 +1,26 @@
+Find occurence of elements where no ranges from 1 - N
+
+package mayank.Array;
+
+public class FindElementWhichOccrsOnceInUnsortedArray2 {
+	
+	  static void printfrequency(int arr[], int n)  
+	    { 
+	        for (int j = 0; j < n; j++) 
+	            arr[j] = arr[j] - 1; 
+	  
+	        for (int i = 0; i < n; i++) 
+	            arr[arr[i] % n] = arr[arr[i] % n] + n; 
+	  
+	        for (int i = 0; i < n; i++) 
+	            System.out.println(i + 1 + "->" + arr[i] / n);           
+	        }
+	        	
+	  
+	    public static void main(String[] args)  
+	    { 
+	    	int arr[] = {2,4,3,4,5,6,7,8,8,10}; 
+	        int n = arr.length; 
+	        printfrequency(arr, n); 
+	    } 
+}
