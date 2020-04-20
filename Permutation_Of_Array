@@ -1,0 +1,44 @@
+package mayank.Array;
+/**
+ * @author Mayank
+ *
+ */
+public class PermutationOfArray {
+	
+	static void permute(String s,int l,int r) {
+		
+		   if (l == r)
+	            System.out.println(s);
+	        else
+	        {
+	            for (int i = l; i <= r; i++)
+	            {
+	                s = swap(s,l,i);
+	                permute(s, l+1, r);
+	                s = swap(s,l,i);
+	            }
+	}}
+	static String swap(String s,int l,int r) {
+		char []c=s.toCharArray();
+		while(l<r) {
+			char temp= c[l];
+			c[l]=c[r];
+			c[r] = temp;
+			l++;
+			r--;
+		}
+		return String.valueOf(c);
+	}
+
+	public static void main(String[] args) { 
+        int a[]= {1,2,3};
+        String s="";
+        String k="ABCD";
+        for(int i=0;i<a.length;i++) {
+        s += String.valueOf(a[i]);
+        }
+        int l=0,r=s.length()-1;
+        permute(s, l, r);
+        permute(k, l, r);
+	}
+}
