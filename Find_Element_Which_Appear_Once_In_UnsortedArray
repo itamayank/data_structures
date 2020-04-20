@@ -1,0 +1,26 @@
+package mayank.Array;
+
+public class FindElementWhichOccrsOnceInUnsortedArray {
+	
+	static int findSingle(int ar[], int ar_size) 
+	    { 
+		// Do XOR of all elements and return 
+	        int res = ar[0]; 
+	        for (int i = 1; i < ar_size; i++) 
+	            res = res ^ ar[i];                        //tc - O(n) sp - (O(1))      //method works only if rest 
+	                                                                                 //of the elements occurs twice somewhere
+	      
+	        return res; 
+	    }
+	   public static void main (String[] args) 
+	    { 
+	        int ar[] = {2, 3, 5, 4 ,9, 5, 3, 4,2}; 
+	        int n = ar.length; 
+	        System.out.println("Element occurring once is " + 
+	                            findSingle(ar, n) + " "); 
+	    } 
+}
+
+
+//no element should be thrice & only one element should be single
+ 
