@@ -1,0 +1,40 @@
+	
+	/*Given n stairs and we have 2 colour yellow and green the task is that 
+	 * we have to paint given stairs by given colour with condition is that
+	 *  we cannot paints two yellow steps directly after each other.*/
+   
+   
+   //solution
+	
+/*    Case 1: When we have 1 stair, we can paint either yellow or green.
+      Case 2: When we have 2 stairs, we can paint first stair by either yellow or green 
+      but for next stair we can only paint by green because we cannot paint two yellow steps directly after each other.
+       So total cases are three YG, GG, GY.
+      Case 3: When we have 3 stairs then we can paint it by in 5 ways.*/
+
+package mayank.Array;
+
+public class WaysToPaintStairs {
+	
+	static int ways(int n) 
+    { 
+        int []W = new int[n+1]; 
+      
+        // take base case for 1 and 2 
+        W[1] = 2; 
+        W[2] = 3; 
+      
+        for (int i = 3; i <= n; i++)  
+            W[i] = W[i - 1] + W[i - 2]; 
+          
+        return W[n]; 
+    } 
+      
+    // Driven code 
+    static public void main (String[] args) 
+    { 
+        int n = 3; 
+          
+        System.out.println(ways(n)); 
+    } 
+}
