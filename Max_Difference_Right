@@ -1,0 +1,25 @@
+ //wap to find max diff b/w two elements where bigger element  
+ //is on right side
+                                               
+package mayank.Array;
+
+public class MaximumDiffRight {
+                                                
+	
+	public static void main(String[] args) {
+		int arr[] = {1,2,3,0,5,6};
+		int max_diff = arr[1] - arr[0];
+		int min_elemet = arr[0];
+		
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i] - min_elemet > max_diff) {
+				max_diff = arr[i] - min_elemet;
+			}
+			if(arr[i]<min_elemet) {
+				min_elemet = arr[i];
+			}
+		}
+		System.out.println(max_diff);
+	}
+	
+}
