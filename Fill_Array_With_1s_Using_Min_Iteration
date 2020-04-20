@@ -1,0 +1,65 @@
+Given an array of 0s and 1s, 
+in how many iterations the whole array can be filled with 1s if in a single iteration immediate neighbors of 1s can be filled\
+package mayank.Array;
+
+
+public class FillArray1 {
+	// Java program to find number of iterations 
+	// to fill with all array with  1s 
+
+		static int countIterations(int arr[], int n) 
+		{ 
+			boolean oneFound = false; 
+			int res = 0; 
+			
+			for (int i=0; i<n; ) 
+			{ 
+				if (arr[i] == 1) 
+				oneFound = true; 
+		
+				while (i<n && arr[i]==1) 
+					i++; 
+		
+				int count_zero = 0; 
+				while (i<n && arr[i]==0) 
+				{ 
+					count_zero++; 
+					i++; 
+				} 
+		
+				if (oneFound == false && i == n) 
+					return -1; 
+		
+				int curr_count; 
+				if (i < n && oneFound == true) 
+				{ 
+					if ((count_zero & 1) == 0) 
+						curr_count = count_zero/2; 
+		
+					else
+						curr_count = (count_zero+1)/2; 
+		
+					count_zero = 0; 
+				} 
+		
+				else
+				{ 
+					curr_count = count_zero; 
+					count_zero = 0; 
+				} 
+		
+				res = Math.max(res, curr_count); 
+			} 
+		
+			return res; 
+		} 
+		
+		public static void main(String[] args) 
+		{ 
+			int arr[] = {0, 1, 0, 0, 1, 0, 0, 
+					0, 0, 0, 0, 0, 1, 0}; 
+			
+			System.out.println(countIterations(arr, arr.length)); 
+			
+		} 
+	} 
