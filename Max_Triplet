@@ -1,0 +1,57 @@
+package mayank.Array;
+
+import java.util.Arrays;
+
+public class MaxTriplet {
+
+	
+	public static void main(String[] args) {
+		int arr[] = {15,10,3,3,4,5};
+		System.out.println("Max Triplet Product is "+findMaxTriplet(arr));
+		System.out.println("Max Triplet Product is "+findMaxTriple2(arr));
+	}
+
+	private static int findMaxTriple2(int[] arr) {
+		
+		Arrays.sort(arr);
+		int n = arr.length;
+		 return Math.max(arr[0] * arr[1] * arr[n - 1],            //minus * minus = Plus
+	                arr[n - 1] * arr[n - 2] * arr[n - 3]);
+		
+	}
+
+	private static int findMaxTriplet(int[] arr) {
+		int first=Integer.MIN_VALUE,second = Integer.MIN_VALUE,third = Integer.MIN_VALUE;
+		
+		int minFirst = arr[0],minSecond = arr[0];
+		
+		for(int i=0;i<arr.length;i++) {
+			int num = arr[i];
+			
+			if( num > first ) {
+				third = second;
+				second = first;
+				first = num;
+			}
+			
+			if(num < first && num > second) {
+				third = second;
+				second = num;
+			}
+			
+			if(num < second && num > third) {
+				third = num;
+			}
+			
+			if(num < minFirst) {
+				minSecond = minFirst;
+				minFirst = num;
+			}
+		}
+		
+		int maxProduct = first*second*third;
+		int minProduct = minFirst * minSecond * first;
+
+       return Math.max(maxProduct, minProduct);
+	}
+}
