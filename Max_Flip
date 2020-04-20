@@ -1,0 +1,34 @@
+/*Given a binary array, find the maximum number
+	 * zeros in an array with one flip of a subarray allowed. A flip operation switches all 0s to 1s and 1s to 0s*/
+
+package mayank.Array;
+
+public class MaxFlip {
+	
+	public static int findMaxZeroCount(int arr[], int n) {
+		int orig_zero_count = 0;
+
+		int max_diff = 0;
+
+		int curr_max = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (arr[i] == 0)
+				orig_zero_count++;
+
+			int val = (arr[i] == 1) ? 1 : -1;
+
+			curr_max = Math.max(val, curr_max + val);
+			max_diff = Math.max(max_diff, curr_max);
+		}
+		max_diff = Math.max(0, max_diff);
+
+		return orig_zero_count + max_diff;
+	}
+
+	public static void main(String[] args) {
+		int arr[] = { 0, 1, 0, 0, 1, 1, 0 };
+
+		System.out.println(findMaxZeroCount(arr, arr.length));
+	}
+}
