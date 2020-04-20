@@ -1,0 +1,56 @@
+package mayank.Array;
+
+public class Fibb {
+
+	static void fib(int n) 
+	{ 
+		int a = 0, b = 1, c; 
+		if (n >= 0) 
+			System.out.print( a + " "); 
+		if (n >= 1) 
+			System.out.print( b + " "); 
+		for (int i = 2; i <= n; i++)                               //with 3 variable
+		{ 
+			c = a + b; 
+			System.out.print( c + " "); 
+			a = b; 
+			b = c; 
+		} 
+	} 
+	static void fib2(int n) 
+	{ 
+	    int a = 0, b = 1; 
+	    if (n >= 0) 
+	        System.out.print(a + " "); 
+	    if (n >= 1) 
+	        System.out.print(b + " "); 
+	    for (int i = 2; i <= n; i++)                                //with 2 variable
+	    { 
+	        System.out.print(a + b + " "); 
+	        b = a + b; 
+	        a = b - a; 
+	    } 
+	}
+	
+	 static  boolean isPerfectSquare(int x) 
+	    { 
+	        int s = (int) Math.sqrt(x); 
+	        return (s*s == x); 
+	    } 
+	       
+	    // Returns true if n is a Fibonacci Number, else false 
+	    static boolean isFibonacci(int n) 
+	    { 
+	        return isPerfectSquare(5*n*n + 4) || 
+	               isPerfectSquare(5*n*n - 4); 
+	    } 
+	
+		public static void main (String[] args) 
+		{ 
+				fib(9); 
+				System.out.println();
+				fib2(9);
+				System.out.println();
+				System.out.println(isFibonacci(11));
+		} 
+	} 
