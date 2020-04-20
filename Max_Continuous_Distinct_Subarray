@@ -1,0 +1,68 @@
+// Que 1: Given an array of n numbers with repetition of numbers.
+	// You need to find the max length of continuous sub array with at max 3 unique
+	// elements.
+	// For eg
+	// array: 1 2 3 1 4 3 4 1 2
+	// ans: 6 (3 1 4 3 4 1)
+	// Solution: Time complexity O(n)
+	// Extra Space O(1)
+  
+  
+package mayank.Array;
+
+import java.util.*;
+
+public class MaxContinuosDistinctSubArray {
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 3, 1, 4, 3, 4, 1, 2 };
+
+		System.out.println(maxLength(arr));
+	}
+
+	static int maxLength(int[] arr) {
+
+		int left = 0;
+		int right = 1;
+
+		int maxLength = 1;
+
+		Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
+		freq.put(arr[0], 1);
+
+		while (right < arr.length) {
+
+			int val = arr[right];
+
+			if (freq.containsKey(val)) {
+				freq.put(val, freq.get(val) + 1);
+			} else {
+
+				while (freq.size() == 3) {
+
+					int leftVal = arr[left];
+					++left;
+
+					int count = freq.get(leftVal);
+					--count;
+
+					if (count == 0) {
+						freq.remove(leftVal);
+					} else {
+						freq.put(leftVal, count);
+					}
+				}
+
+				freq.put(val, 1);
+			}
+
+			maxLength = Math.max(maxLength, right - left + 1);
+			++right;
+
+		}
+
+		return maxLength;
+
+	}
+
+}
