@@ -1,0 +1,46 @@
+	/*Loop through A1[], store the count of every number in a HashMap (key: number, value: count of number)
+		Loop through A2[], check if it is present in HashMap, if so, 
+		put in output array that many times and remove the number from HashMap.
+		Sort the rest of the numbers present in HashMap and put in output array.*/
+
+
+package mayank.Array;
+
+public class RelativeSorting{
+	public static void main(String[] args) {
+		
+		int arr[] = {2,4,7,3,4,8,0,1,0,5,8};
+		int arr2[] = {2,0,5,4};
+		/*int arr[] = {2,4,7,3,4,8,0,1,0,5,8};
+		int arr2[] = {2,0,5,4};
+		int resultArr[] = new int[arr.length];
+		int k=0;
+		
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				if(arr[i]==arr[j]) {
+					resultArr[k]= arr[j];
+					//arr = ArraysUtil.remove(arr,arr[j]);                         //jar needed here
+					k++;
+				}
+			}
+		} Arrays.sort(arr);
+        for(int i=0;i<arr.length;i++){
+            resultArr[k] =arr[i];
+            k++;
+        }
+        System.out.println(Arrays.toString(resultArr));*/
+		LinkedList<Integer> ls = new LinkedList<>();
+		
+		for(int i=0;i<arr.length;i++) {
+			ls.add(arr[i]);
+		}
+		System.out.println(ls);
+		for(int j = 0; j<arr2.length; j++) {
+			int v = arr2[j];
+			ls.remove(v);
+		}
+         System.out.println(ls);		
+	}
+
+}
