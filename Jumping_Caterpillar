@@ -1,0 +1,29 @@
+package mayank.Array;
+
+public class JumpingCaterpillar {
+	
+	static int minJumps(int arr[]) {
+		
+		int maxReach = arr[0];
+		int step = arr[0];
+		int jump = 1;
+		int n = arr.length;
+		
+		for(int i=1;i<n;i++) {
+			
+			if(i==n-1) {
+				return jump;
+			}
+			
+		maxReach = Math.max(maxReach, arr[i]);
+		step--;
+		
+		if(step==0) {
+			jump++;
+			
+			step = maxReach;
+		}
+		}
+		
+		return -1;
+	}
