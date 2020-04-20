@@ -1,0 +1,23 @@
+package mayank.Array;
+
+public class CheckNumberXpowerY {
+
+	static boolean isPower(int n) {
+		for (int x = 2; x <= Math.sqrt(n); x++) {
+			int p = x;
+
+			while (p <= n) {
+				p = p * x;
+				if (p == n)
+					return true;
+			}
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		for (int i = 2; i < 100; i++)
+			if (isPower(i))
+				System.out.print(i + " ");
+	}
+}
