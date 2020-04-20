@@ -1,0 +1,38 @@
+package mayank.Array;
+
+/**
+ * @author Mayank
+ *
+ */
+
+
+public class FindElementWhichOccursThriceInSortedArray {                   //   tc O(log n) space complexity O(1)
+
+	static void findTriplet(int arr[], int low, int high) {
+		int mid = (low + high) / 2;
+		if(low == high) {
+			System.out.println("Element which occurs thrice is :"+arr[low]);
+			return;
+		}
+		
+			if(mid % 2 == 0) {
+				if(arr[mid] == arr[mid+1]) {
+					findTriplet(arr, mid+1, high);
+				}else {
+					findTriplet(arr, low, mid);
+				}
+			}else if(mid % 2 == 1)  {
+				if(arr[mid] == arr[mid-1]) {
+					findTriplet(arr, mid+1, high);
+				}else {
+					findTriplet(arr, low, mid-1);
+				}
+			}
+	}
+	
+	public static void main(String[] args) {
+		int a[] = {1,1,2,2,3,3,4,4,4,5,5};
+		int n = a.length-1;
+		findTriplet(a,0,n);
+	}
+}
