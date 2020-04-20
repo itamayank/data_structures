@@ -1,0 +1,55 @@
+// a program to check if a subset of given sum exists in array or not
+
+eg - [1,2,3,4,5,6,7], sum - 12
+
+o/p - yes [3+4+5]
+
+package mayank.Array;
+
+import java.util.Vector;
+
+public class ToCheckSubsetOfSum {
+
+	static void printAllSubsetsRec(int arr[], int n, Vector<Integer> v, int sum) {
+		
+		if (sum == 0) {
+			for (int i = 0; i < v.size(); i++)
+				System.out.print(v.get(i) + " ");
+			System.out.println();
+			return;
+		}
+
+		if (n == 0)
+			return;
+
+		printAllSubsetsRec(arr, n - 1, v, sum);
+		Vector<Integer> v1 = new Vector<Integer>(v);
+		v1.add(arr[n - 1]);
+		printAllSubsetsRec(arr, n - 1, v1, sum - arr[n - 1]);
+	}
+
+	static Boolean isSubSet(int arr[], int n, int sum) {
+		if (sum == 0)
+			return true;
+		if (n == 0 && sum != 0)
+			return false;
+		if (arr[n - 1] > sum)
+			return isSubSet(arr, n - 1, sum);
+		return isSubSet(arr, n - 1, sum) || isSubSet(arr, n - 1, sum - arr[n - 1]);
+	}
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 3, 1, 8, 7, 9 };
+		int sum = 5;
+		int n = arr.length;
+		if (isSubSet(arr, n, sum) == true) {
+			System.out.println("subset of given sum found");
+		} else {
+			System.out.println("no subset of given sum found");
+		}
+		
+		Vector<Integer> v= new Vector<Integer>();  
+	    printAllSubsetsRec(arr, n, v, sum); 
+	}
+
+}
