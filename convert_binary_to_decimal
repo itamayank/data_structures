@@ -1,0 +1,45 @@
+package mayank.Array;
+
+public class BinaryToDecimal {
+
+	static int binaryToDecimal(int n) {
+		int dec_value = 0;
+		int base = 1;
+		int temp = n;
+
+		while (temp > 0) {
+			int last_digit = temp % 10;                    // for values within int range
+			temp = temp / 10;
+
+			dec_value += last_digit * base;
+
+			base = base * 2;
+		}
+		return dec_value;
+	}
+
+	static int binaryToDecimal(String n) {
+		String num = n;
+		int dec_value = 0;
+
+		int base = 1;                                    ///for values larger than int range
+
+		int len = num.length();
+		for (int i = len - 1; i >= 0; i--) {
+			if (num.charAt(i) == '1')
+				dec_value += base;
+			base = base * 2;
+		}
+
+		return dec_value;
+	}
+	
+	public static void main(String[] args) 
+    { 
+        String num = new String("10101001"); 
+        int i = 1010;
+        System.out.println(binaryToDecimal(num)); 
+        System.out.println(binaryToDecimal(i));
+    } 
+
+}
