@@ -1,0 +1,52 @@
+create the largest possible number from at most one swap
+
+package mayank.Array;
+
+public class FormLargestNumberUsingOneSwap {
+	   
+	static String largestNumber(String num) 
+	    { 
+	        int n = num.length(); 
+	        int right; 
+	        int rightMax[] = new int[n]; 
+	       
+	        rightMax[n - 1] = -1; 
+	        right = n - 1; 
+	  
+	        for (int i = n - 1; i >= 0 ; i--) 
+	        { 
+	            if (num.charAt(i) < num.charAt(right)) 
+	                rightMax[i] = right; 
+	            else{ 
+	                rightMax[i] = -1; 
+	                right = i; 
+	            } 
+	        } 
+	        for (int i = 0; i < n; i++) 
+	        { 
+	            if (rightMax[i] != -1) 
+	            { 
+	                num = swap(num,i,rightMax[i]); 
+	                break; 
+	            } 
+	        } 
+	        return num; 
+	    } 
+	   static String swap(String num, int i, int j) 
+	    { 	 char str[] = num.toCharArray();
+	     
+	       char n = str[i];
+	       str[i] = str[j];
+	       str[j] = n;
+
+	        return String.valueOf(str); 
+	  
+	    } 
+	    public static void main(String[] args) 
+	    { 
+	        String num = "12345"; 
+	        System.out.println("Largest Number : " + 
+	                              largestNumber(num)); 
+	    } 
+	  
+}
