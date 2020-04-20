@@ -1,0 +1,37 @@
+Write an efficient program to find the sum of contiguous subarray 
+within a one-dimensional array of numbers which has the largest sum.
+
+package mayank.Array;
+
+public class KadaneAlgo {
+
+	// Largest Sum Contiguous Subarray
+
+	static int maxSubArraySum(int a[], int size) {
+		int max_so_far = a[0];
+		int curr_max = a[0];
+
+		for (int i = 1; i < size; i++) {
+			curr_max = Math.max(a[i], curr_max + a[i]);
+			max_so_far = Math.max(max_so_far, curr_max);
+		}
+		return max_so_far;
+	}
+
+	public static void main(String[] args) {
+		int a[] = { 4,5,10,1,-5,6,4,8,2,1 };
+		int min = 0, max = 0;
+		
+		for (int i = 0; i < a.length; i++) {
+			max = max + a[i];
+			if (min < max) {
+				min = max;
+			}
+			if (max < 0) {
+				max = 0;
+			}
+		}
+		System.out.println(min);
+		System.out.println(maxSubArraySum(a,a.length));
+	}
+}
