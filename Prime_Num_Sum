@@ -1,0 +1,42 @@
+ find sum of prime numbers within given range
+ 
+ package mayank.Array;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PrimeNumSum {
+
+	public static void main(String[] args) {
+		List<Integer> numbers = new ArrayList<Integer>();
+	    int start = 7;
+	    int end =100;
+	     for(int i=start; i<=end; i++)
+	     {
+	         int count = 0;
+	         for(int j=2; j<i; j++)
+	         {
+	             if(i % j == 0)
+	             {
+	                 count++;
+	                 break;
+	             }
+	         }
+	         if(count == 0)
+	         {
+	             numbers.add(i);
+	             
+	         }}
+	         for(int m=0; m<numbers.size();m++) {
+	        	 for(int k=0; k<numbers.size(); k++) {
+	        		 if(numbers.get(m)+numbers.get(k)== 24) {
+	        			 System.out.println(numbers.get(m)+","+numbers.get(k));
+	        		 }
+	        	 }
+	         }
+	                     
+	     System.out.println(numbers);
+		
+	}
+
+}
