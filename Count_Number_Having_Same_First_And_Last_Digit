@@ -1,0 +1,64 @@
+package mayank.Array;
+import java.util.*; 
+
+public class CountNoWithSameFirstAndLastDigit {
+
+		public static int getFirstDigit(int x) 
+		{ 
+			while (x >= 10) 
+				x /= 10; 
+			return x; 
+		} 
+
+		public static int getCountWithSameStartAndEndFrom1(int x) 
+		{ 
+			if (x < 10) 
+				return x; 
+
+			int tens = x / 10; 
+
+			int res = tens + 9; 
+
+			int firstDigit = getFirstDigit(x); 
+			int lastDigit = x % 10; 
+
+			if (lastDigit < firstDigit) {
+				res--; 
+			}
+
+			return res; 
+		}
+		
+		public static int getCount(int start, int end) {
+			
+			int count = 0;
+			
+			if(start < 10) {
+				count = 9 - start;
+			}
+			
+			while(start < end) {
+				start = start + 10;
+				count++;
+			}
+			
+			 return count;
+		}
+
+		public static int getCountWithSameStartAndEnd(int start, 
+													int end) 
+		{ 
+			return getCountWithSameStartAndEndFrom1(end) 
+			- getCountWithSameStartAndEndFrom1(start - 1); 
+		} 
+
+		public static void main(String[] args) 
+		{ 
+			int start = 1, end = 1705; 
+			System.out.print(getCountWithSameStartAndEnd(start, 
+					end)); 
+			System.out.println();
+			System.out.print(getCount(start, 
+					end)); 
+		} 
+	} 
