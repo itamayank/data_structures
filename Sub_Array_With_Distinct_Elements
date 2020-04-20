@@ -1,0 +1,39 @@
+//Given an array, the task is to calculate the sum of lengths of contiguous subarrays having all elements distinct.
+
+package mayank.Array;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class SubArraysWithDistinctElements {
+		public static int sumoflength(int[] arr, int n) 
+		{ 
+
+			Set<Integer> s = new HashSet<>(); 
+
+			int j = 0, ans = 0;                                              //O(n)
+
+			for (int i = 0; i < n; i++) 
+			{ 
+				while (j < n && !s.contains(arr[j])) 
+				{ 
+					s.add(arr[i]); 
+					j++; 
+				} 
+
+				ans += ((j - i) * (j - i + 1)) / 2; 
+
+				s.remove(arr[i]); 
+			} 
+
+			return ans; 
+		} 
+
+		public static void main(String[] args) 
+		{ 
+			int[] arr = {1,2,1 }; 
+			int n = arr.length; 
+
+			System.out.println(sumoflength(arr, n)); 
+		} 
+	} 
