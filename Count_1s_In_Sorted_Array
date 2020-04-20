@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package mayank.Array;
+
+/**
+ * @author Mayank
+ *
+ */
+public class count1sInSortedArray {
+
+	
+	static int countOnes(int arr[], int low, int high) 
+    { 
+      if (high >= low) 
+      { 
+        int mid = low + (high - low)/2; 
+  
+        if ( (mid == 0 || arr[mid-1] == 0) && (arr[mid] == 1) ) 
+                return mid; 
+  
+        if (arr[mid] == 1) 
+        	return countOnes(arr, low, (mid -1)); 
+        	
+          return countOnes(arr, (mid + 1), high); 
+  
+        
+      } 
+      return 0; 
+    } 
+  
+    public static void main(String args[]) 
+    { 
+       int arr[] = {0, 0, 0, 1, 1, 1, 1, 1, 1, 1,2,3}; 
+       int n = arr.length; 
+       System.out.println("Count of 1's in given array is " + 
+                           countOnes(arr, 0, n-1) ); 
+    } 
+}
