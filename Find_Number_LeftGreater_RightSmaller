@@ -1,0 +1,33 @@
+Find a number whose left elements are smaller and right elements are greater
+
+
+package mayank.Array;
+
+public class LeftGreaterRightSmaller {
+
+	public static void main(String[] args) {
+		
+		int arr[] = {5, 1, 4, 3, 6, 8, 10, 7, 9};
+		getIndex(arr,arr.length);
+	}
+
+	private static void getIndex(int[] arr, int n) {
+		
+		int leftMax[] = new int[n];
+		int rightMin =  Integer.MAX_VALUE;
+		leftMax[0] = Integer.MIN_VALUE;
+		
+		for(int i=1;i<n;i++) {
+			leftMax[i] = Math.max(leftMax[i-1], arr[i-1]);
+		}
+		
+		for (int i = n - 1; i >= 0; i--)  
+        { 
+             if (leftMax[i] < arr[i] && rightMin > arr[i]) {
+            	 System.out.println(i);
+            	 break;
+             }
+             rightMin = Math.min(rightMin, arr[i]);  
+        } 
+	}
+}
