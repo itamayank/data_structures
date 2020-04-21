@@ -1,0 +1,45 @@
+Ugly numbers are numbers whose only prime factors are 2, 3 or 5. The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, …
+shows the first 11 ugly numbers. By convention, 1 is included.
+
+
+package mayank.Array.dp;
+
+public class UglyNumber {
+
+	public static void main(String[] args) {
+		int n = 150;
+		uglyNumber(n);
+	}
+
+	private static void uglyNumber(int n) {
+  
+		int x=0, y=0, z=0;
+		int multiple2 = 2;
+		int multiple3 = 3;
+		int multiple5 = 5;
+		
+		int ugly[] = new int[n];
+		ugly[0] = 1;
+		
+		for(int i=1; i<n; i++) {
+			
+			int nextVal = Math.min(multiple2, Math.min(multiple3, multiple5));
+			
+			ugly[i] = nextVal;
+			
+			if(nextVal == multiple2) {
+				x++;
+				multiple2 = ugly[x]*2;
+			}
+			if(nextVal == multiple3) {
+				y++;
+				multiple3 = ugly[y]*3;
+			}
+			if(nextVal == multiple5) {
+				z++;
+				multiple5 = ugly[z]*5;
+			}
+		}
+		System.out.println(ugly[n-1]);
+	}
+}
