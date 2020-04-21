@@ -1,0 +1,177 @@
+package mayank.BalancedBSTs.RedBlackTree;
+
+public class Implementation {
+
+		public static void main(String[] args) {
+			Implementation rbt = new Implementation();
+			/*
+			 * rbt.put(10); rbt.put(20); rbt.put(30); rbt.put(15);
+			 */
+			rbt.put(7);
+			rbt.put(3);
+			rbt.put(18);
+			rbt.put(10);
+			rbt.put(22);
+			rbt.put(8);
+			rbt.put(11);
+			rbt.put(26);
+			rbt.preOrder();
+		}
+
+		private static final int RED = 0;
+		private static final int BLACK = 1;
+		private Node root;
+
+		Implementation() {
+			root = null;
+		}
+
+		private class Node {
+			int key, color = RED;
+			Node left, right;
+
+			Node(int key) {
+				this.key = key;
+				left = null;
+				right = null;
+				;
+			}
+		}
+
+		public void put(int key) {
+			root = insert(root, key);
+			root.color = BLACK;
+		}
+
+		public Node insert(Node node, int key) {
+			if (node == null) {
+				node = new Node(key);
+			}
+			if (key < node.key) {
+				node.left = insert(node.left, key);
+			}
+			if (key > node.key) {
+				node.right = insert(node.right, key);
+			}
+
+			// fix up leaning links
+			// Left Left Case (g, p and x) g == node
+			if (!isRED(node) && isRED(node.left) && isRED(node.left.left) && (!isRED(node.right) || node.right == null))
+				node = llCase(node);
+			// Left Right Case (g,p and x) g == node
+			if (!isRED(node) && isRED(node.left) && isRED(node.left.right)
+					&& (!isRED(node.right) || node.right == null)) {
+				node = lRotate(node.left);
+				node = llCase(node);
+			}
+			// Right Right Case (g, p and x) g==node
+			if (!isRED(node) && isRED(node.right) && isRED(node.right.right)
+					&& (!isRED(node.left) || node.left == null))
+				node = rrCase(node);
+			// Right Left Case (g, p and x) g==node
+			if (!isRED(node) && isRED(node.right) && isRED(node.right.left)
+					&& (!isRED(node.right) || node.right == null)) {
+				node = rRotate(node.right);
+				node = rrCase(node);
+			}
+			// flip color case
+			if (!isRED(node) && isRED(node.right) && isRED(node.left) && isRED(node.left.left))
+				node = flipColor(node);
+			if (!isRED(node) && isRED(node.right) && isRED(node.left) && isRED(node.left.right))
+				node = flipColor(node);
+			if (!isRED(node) && isRED(node.right) && isRED(node.left) && isRED(node.right.right))
+				node = flipColor(node);
+			if (!isRED(node) && isRED(node.right) && isRED(node.left) && isRED(node.right.left))
+				node = flipColor(node);
+
+			return node;
+		}
+
+		private boolean isRED(Node node) {
+			if (node == null)
+				return false;
+			else
+				return node.color == RED;
+
+		}
+
+		public Node flipColor(Node y) {
+
+			y.color = RED;
+			y.left.color = BLACK;
+			y.right.color = BLACK;
+
+			return y;
+		}
+
+		public Node lRotate(Node y) {
+			Node x = y.right;
+			Node T2 = x.left;
+
+			// Rotation
+			x.left = y;
+			y.right = T2;
+
+			return x;
+		}
+
+		public Node llCase(Node y) {
+
+			// Right Rotate
+			Node x = y.left;
+			Node T2 = x.right;
+
+			// Rotation
+			x.right = y;
+			y.left = T2;
+
+			// swap color
+			int color = x.color;
+			x.color = y.color;
+			y.color = color;
+
+			return x;
+		}
+
+		public Node rRotate(Node y) {
+			Node x = y.left;
+			Node T2 = x.right;
+
+			// Rotation
+			x.right = y;
+			y.left = T2;
+
+			return x;
+		}
+
+		public Node rrCase(Node y) {
+			// left Rotate
+			Node x = y.right;
+			Node T2 = x.left;
+
+			// Rotation
+			x.left = y;
+			y.right = T2;
+
+			// swap color
+			int color = x.color;
+			x.color = y.color;
+			y.color = color;
+
+			return x;
+		}
+
+		public void preOrder() {
+			preOrderRec(root);
+		}
+
+		public Node preOrderRec(Node node) {
+			if (node != null) {
+				String c = node.color == RED ? "RED" : "BLACK";
+				System.out.println(node.key + " " + c);
+				preOrderRec(node.left);
+				preOrderRec(node.right);
+			}
+			return node;
+		}
+	}
