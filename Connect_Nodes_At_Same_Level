@@ -1,0 +1,88 @@
+	package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import mayank.BinaryTree.TreeTraversal.Node;
+
+public class ConnectNodesAtSameLevel {
+	  static class Node { 
+	        int data; 
+	        Node left, right, nextRight; 
+	        Node(int data){ 
+	            this.data = data; 
+	            left = null; 
+	            right = null; 
+	            nextRight = null; 
+	        } 
+	    }; 
+		
+	    static void connect(Node root) 
+	    { 
+	        Queue<Node> q = new LinkedList<Node>();  
+	        q.add(root); 
+	       
+	        // null marker to represent end of current level
+	        q.add(null);  
+	       
+	        while (!q.isEmpty()) { 
+	            Node p = q.peek(); 
+	            q.remove(); 
+	            if (p != null) { 
+	       
+	                p.nextRight = q.peek(); 
+	       
+	                if (p.left != null) 
+	                    q.add(p.left);  
+	                if (p.right != null) 
+	                    q.add(p.right); 
+	            }  
+	            // if queue is not empty, push NULL to mark  
+            // nodes at this level are visited 
+	            else if (!q.isEmpty())  
+	                q.add(null);  
+	        } 
+	    } 
+	    public static void main(String args[]) 
+	    { 
+	        /* Constructed binary tree is 
+	                  10 
+	                /   \ 
+	              8      2 
+	            /         \ 
+	          3            90 
+	        */
+	    	Node root = new Node(15);
+	    	root.left = new Node(10);
+			root.right = new Node(20);
+			root.left.left = new Node(8);
+			root.left.right = new Node(12);
+			root.right.left = new Node(16);
+			root.right.right= new Node(25);                
+	       
+			//levelTraversal(root);
+	        // Populates nextRight pointer in all nodes 
+	        connect(root); 
+	        
+	       	       
+	        // Let us check the values of nextRight pointers 
+	        System.out.println("Following are populated nextRight pointers in \n" + 
+	      "the tree (-1 is printed if there is no nextRight)"); 
+	        
+	        System.out.println("nextRight of "+ root.data +" is "+ 
+	        ((root.nextRight != null) ? root.nextRight.data : -1)); 
+	        
+	        System.out.println("nextRight of "+ root.left.right.data +" is "+ 
+	    	        ((root.nextRight != null) ? root.nextRight.data : -1)); 
+	        
+	        System.out.println("nextRight of "+ root.left.data+" is "+ 
+	        ((root.left.nextRight != null) ? root.left.nextRight.data : -1)); 
+	        System.out.println("nextRight of "+ root.right.data+" is "+ 
+	        ((root.right.nextRight != null) ? root.right.nextRight.data : -1)); 
+	        System.out.println("nextRight of "+  root.left.left.data+" is "+ 
+	        ((root.left.left.nextRight != null) ? root.left.left.nextRight.data : -1)); 
+	        System.out.println("nextRight of "+  root.right.right.data+" is "+ 
+	        ((root.right.right.nextRight != null) ? root.right.right.nextRight.data : -1)); 
+	    
+}
+}
