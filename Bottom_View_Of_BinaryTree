@@ -1,0 +1,79 @@
+package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import mayank.BinaryTree.BinaryTreeSumOfAllLeftNodes.node;
+
+import java.util.Queue;
+import java.util.TreeMap;
+
+
+public class BotttomViewOfBinaryTree {
+	
+	static class Node 
+	{ 
+	    int data; 
+	    int hd; 
+	    Node left, right; 
+	  
+	    public Node(int key) 
+	    { 
+	        data = key; 
+	        hd = Integer.MAX_VALUE; 
+	        left = right = null; 
+	    } 
+	}
+	     static Node root;
+	    public void bottomView(Node root) 
+	    { 
+	        if (root == null) 
+	            return; 
+	  
+	        int hd = 0; 
+	        Map<Integer, Integer> map = new TreeMap<>(); 
+	  	    Queue<Node> queue = new LinkedList<Node>(); 
+	        root.hd = hd; 
+	        queue.add(root);
+	  
+	        while (!queue.isEmpty()) 
+	        {                                                       
+	            Node temp = queue.poll(); 
+	  
+	            map.put(temp.hd, temp.data); 
+	  
+	            if (temp.left != null) 
+	            { 
+	                temp.left.hd = hd-1; 
+	                queue.add(temp.left); 
+	            } 
+	            if (temp.right != null) 
+	            { 
+	                temp.right.hd = hd+1; 
+	                queue.add(temp.right); 
+	            } 
+	        } 
+	        
+	      for(  Entry<Integer,Integer> entry : map.entrySet()) {
+	    	  System.out.print(entry.getValue() +" ");
+	      }
+	    } 
+	    
+	    public static void main(String[] args) 
+	    { 
+	        BotttomViewOfBinaryTree tree = new BotttomViewOfBinaryTree();
+	        tree.root = new Node(1); 
+	        tree.root.left = new Node(2); 
+	        tree.root.right = new Node(3); 
+	        tree.root.left.right = new Node(4); 
+	        tree.root.left.right.right = new Node(5); 
+	        tree.root.left.right.right.right = new Node(6); 
+	        
+	  
+	        System.out.println("Bottom view of the given binary tree:"); 
+	        tree.bottomView(root); 
+	        System.out.println();
+	    } 
+
+}
