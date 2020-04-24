@@ -1,0 +1,72 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+/**
+ * @author Mayank
+ *
+ */
+public class PopulateInorderSuccessor {
+	static class Node  
+	{ 
+	    int data; 
+	    Node left, right, next; 
+	   
+	    Node(int item)  
+	    { 
+	        data = item; 
+	        left = right = next = null; 
+	    } 
+	} 
+	    Node root; 
+	    static Node next = null; 
+	   
+	    void populateNext(Node node)  
+	    { 
+	        if (node != null)  
+	        { 
+	            populateNext(node.right);                             //reverse inorder traversal
+	   
+	            node.next = next; 
+	   
+	            next = node; 
+	   
+	            populateNext(node.left); 
+	        } 
+	    } 
+	   
+	    public static void main(String args[])  
+	    
+	    { 
+	        /* Constructed binary tree is 
+	            10 
+	           /   \ 
+	          8      12 
+	         / 
+	        3    */
+	    	PopulateInorderSuccessor tree = new PopulateInorderSuccessor(); 
+	        tree.root = new Node(10); 
+	        tree.root.left = new Node(8); 
+	        tree.root.right = new Node(12); 
+	        tree.root.left.left = new Node(3); 
+	        tree.root.left.left.left = new Node(13); 
+	   
+	       /* tree.root.left = new Node(2);  
+	        tree.root.right = new Node(3);  
+	  
+	        tree.root.left.left = new Node(4);  
+	        tree.root.left.right = new Node(5);  
+	        tree.root.right.right = new Node(6); */ 
+	        tree.populateNext(tree.root); 
+	   
+	        Node ptr = tree.root.left.left; 
+	        while (ptr != null)  
+	        { 
+	            // -1 is printed if there is no successor 
+	            int print = ptr.next != null ? ptr.next.data : -1; 
+	            System.out.println("Next of " + ptr.data + " is: " + print); 
+	            ptr = ptr.next; 
+	        } 
+	    } 
+	} 
