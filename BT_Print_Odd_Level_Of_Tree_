@@ -1,0 +1,95 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * @author Mayank
+ *
+ */
+public class PrintOddLevelDataOTree {
+		  
+		static class Node {  
+		    int data;  
+		    Node left, right;  
+		} 
+		static void printOddNodes(Node root)  
+		{  
+		    if (root == null) return;  
+		  
+		    Queue<Node> q = new LinkedList<Node> ();  
+		  
+		    q.add(root);  
+		    boolean isOdd = true;  
+		  
+		    while (!q.isEmpty())  
+		    {  
+		        int nodeCount = q.size();  
+		              
+		        while (nodeCount > 0)                     //level order
+		        {  
+		            Node node = q.poll();  
+		            if (isOdd == true)  
+		            System.out.print(node.data + " ");  
+		           
+		            if (node.left != null)  
+		                q.add(node.left);  
+		            if (node.right != null)  
+		                q.add(node.right);  
+		           
+		            nodeCount--;  
+		        }  
+		        isOdd = !isOdd;  
+		    }  
+		}  
+		static void printOddNodes(Node root, boolean isOdd)  
+		{  
+		    if (root == null)  
+		    return;  
+		  
+		    if (isOdd == true)  
+		    System.out.print(root.data + " ");                  //preorder
+		  
+		    printOddNodes(root.left, !isOdd);  
+		    printOddNodes(root.right, !isOdd);  
+		} 
+		static void printEvenNodes(Node root, boolean isEven)  
+		{  
+		    if (root == null)  
+		    return;  
+		  
+		    if (isEven == true)   
+		    System.out.print(root.data + " ");                 //preorder
+		  
+		    printOddNodes(root.left, !isEven);  
+		    printOddNodes(root.right, !isEven);  
+		} 
+		
+		static Node newNode(int data)  
+		{  
+		    Node node = new Node();  
+		    node.data = data;  
+		    node.left = null; 
+		    node.right = null;  
+		    return (node);  
+		}  
+		public static void main(String[] args)  
+		{  
+		    Node root = newNode(1);  
+		    root.left = newNode(2);  
+		    root.right = newNode(3);  
+		    root.left.left = newNode(4);  
+		    root.left.right = newNode(5); 
+		    System.out.println("Odd level nodes of tree  (iterative)::::::");
+		    printOddNodes(root);  
+		    System.out.println();
+		    System.out.println("Odd level nodes of tree (recursive)::::::");
+		    printOddNodes(root, true);
+		    System.out.println();
+		    System.out.println("Even level nodes of tree::::::");
+		    printEvenNodes(root,false);
+		} 
+}
