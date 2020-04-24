@@ -1,0 +1,101 @@
+package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class LeftViewOfTree {
+
+	Node root, root1;
+	static class Node{
+		int data;
+		Node left,right;
+		Node(int d){
+			data = d;
+			left = right = null;
+		}
+	}
+	private static void printRightView(Node root)  
+    { 
+        if (root == null) 
+            return; 
+              
+        Queue<Node> queue = new LinkedList<>(); 
+        queue.add(root); 
+          
+        while (!queue.isEmpty())  
+        {    
+            int n = queue.size(); 
+              
+            for (int i = 1; i <= n; i++) { 
+                Node temp = queue.poll(); 
+               
+                if (i == n) 
+                    System.out.print(temp.data + " "); 
+
+                if (temp.left != null) 
+                    queue.add(temp.left); 
+                      
+                if (temp.right != null) 
+                    queue.add(temp.right); 
+            } 
+        } 
+    }
+	private static void printLeftView(Node root)  
+    { 
+        if (root == null) 
+            return; 
+              
+        Queue<Node> queue = new LinkedList<>(); 
+        queue.add(root); 
+          
+        while (!queue.isEmpty())  
+        {    
+            int n = queue.size(); 
+              
+            for (int i = 1; i <= n; i++) { 
+                Node temp = queue.poll(); 
+               
+                if (i == 1) 
+                    System.out.print(temp.data + " "); 
+               
+                
+                if (temp.left != null) 
+                	queue.add(temp.left); 
+
+                if (temp.right != null) 
+                    queue.add(temp.right); 
+            
+               
+        } 
+          }
+    }
+	
+	public static void main(String[] args) {
+		LeftViewOfTree tree = new LeftViewOfTree();
+		tree.root1 = new Node(1);
+		tree.root1.left = new Node(2);
+		tree.root1.right = new Node(3); 
+		tree.root1.left.left = new Node(4); 
+		tree.root1.left.left.left = new Node(5); 
+		tree.root1.left.left.right= new Node(6); 
+		
+		
+		  tree.root = new Node(1); 
+	        tree.root.left = new Node(2); 
+	        tree.root.right = new Node(3); 
+	        tree.root.left.left = new Node(4); 
+	        tree.root.left.right = new Node(5); 
+	        tree.root.right.left = new Node(6); 
+	        tree.root.right.right = new Node(7); 
+	        tree.root.right.left.right = new Node(8);
+		
+		System.out.println("Left view of Tree1");
+		tree.printLeftView(tree.root1);
+		System.out.println();
+		System.out.println("Right view of Tree2");
+		System.out.println();
+		printRightView(tree.root);
+		System.out.println();
+		
+	}
+}
