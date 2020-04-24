@@ -1,0 +1,48 @@
+package mayank.BinaryTree;
+
+public class MaximumParentChildrenSum {
+	static class Node { 
+	    int data; 
+	    Node left, right; 
+	    Node(int key) 
+	    { 
+	        data = key; 
+	        left = right = null; 
+	    } 
+	} 
+	    public static int maxSum(Node root) 
+	    { 
+	        if (root == null) 
+	        return 0; 
+	  
+	    int res = maxSum(root.left); 
+	  
+	    if (root.left != null &&  
+	        root.right != null)  
+	    { 
+	        int sum = root.data +  
+	                  root.left.data +  
+	                  root.right.data; 
+	        res = Math.max(res, sum); 
+	    } 
+	    maxSum(root.right);
+	   
+	    return res; 
+	    } 
+	      
+	    public static void main (String[] args) 
+	    { 
+	        Node root = new Node(15); 
+	        root.left = new Node(16); 
+	        root.left.right = new Node(617); 
+	        root.left.right.left = new Node(44); 
+	        root.left.left = new Node(843); 
+	        root.left.left.left = new Node(55); 
+	        root.right = new Node(17); 
+	        root.right.right = new Node(41); 
+	        root.right.left = new Node(7); 
+	        root.right.left.right = new Node(11); 
+	        System.out.print(maxSum(root)); 
+	    } 
+	} 
+
