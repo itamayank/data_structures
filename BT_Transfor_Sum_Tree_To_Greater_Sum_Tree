@@ -1,0 +1,26 @@
+package mayank.BinaryTree;
+
+public class TransformSumTreeToGreaterSumTree {
+
+	//Given a BST, transform it into greater sum tree where each node contains sum of all nodes greater than that node.
+	
+	void transformTreeUtil( Node root, int sum) 
+	{ 
+	   if (root == null)  return; 
+	  
+	   transformTreeUtil(root.right, sum); 
+	  
+	   sum = sum + root.data; 
+	  
+	   root.data = sum - root.data; 
+	  
+	   transformTreeUtil(root.left, sum); 
+	} 
+	  
+	void transformTree( Node root) 
+	{ 
+	    int sum = 0; 
+	    transformTreeUtil(root, sum); 
+	} 
+	
+}
