@@ -1,0 +1,93 @@
+package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import mayank.BinaryTree.ConnectNodesAtSameLevel.Node;
+
+
+public class TreeTraversal {
+
+	static Node root ,b;
+	static class Node{
+		int data;
+		Node left,right;
+		Node(int d){
+			data  = d;
+			left = right = null;
+		}
+	}
+	static void inorder(Node root) {
+		if(root == null) {
+			return;
+		}
+		inorder(root.left);                                            //inorder traversal (left-root-right)
+		System.out.print(root.data+" ");
+		inorder(root.right);
+	}
+	static void preOrder(Node root) {
+		if(root == null) {
+			return;
+		}
+		System.out.print(root.data+" ");                              //preorder traversal (root-left-right)
+		preOrder(root.left);
+		
+		preOrder(root.right);
+	}
+	static void postOrder(Node root) {
+		if(root == null) {
+			return;                                                    //postorder traversal (left-right-root)
+		}
+		postOrder(root.left);
+		postOrder(root.right);
+		System.out.print(root.data+" ");
+	}
+	
+	static void levelTraversal(Node root) {
+		if (root == null) 
+            return; 
+		  Queue<Node> queue = new LinkedList<Node>();     //Breadth first or level order traversal (O(n))
+		  queue.add(root); 
+	        while (!queue.isEmpty())  
+	        { 
+	  
+	            Node tempNode = queue.poll(); 
+	            System.out.print(tempNode.data + " "); 
+	           
+	            if (tempNode.left != null) { 
+	                queue.add(tempNode.left); 
+	            } 
+	  
+	            if (tempNode.right != null) { 
+	                queue.add(tempNode.right); 
+	            } 
+	        } 	
+	}
+		
+	public static void main(String[] args) {
+		TreeTraversal tree = new  TreeTraversal();
+		tree.root = new Node(1);
+		tree.root.left = new Node(2);
+		tree.root.right = new Node(3);
+		tree.root.left.left = new Node(4);
+		tree.root.left.right = new Node(5);
+		
+	        
+		System.out.println("Inorder traversal of Tree:");
+		inorder(root);
+		System.out.println();
+		System.out.println("Preorder traversal of Tree:");
+		preOrder(root);
+		System.out.println();
+		System.out.println("Postorder traversal of Tree:");
+		postOrder(root);
+		System.out.println();
+		System.out.println("Level traversal of Tree:");
+	    levelTraversal(root);
+		System.out.println();
+		
+		
+	}
+	
+	
+}
