@@ -1,0 +1,73 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+/**
+ * @author Mayank
+ *
+ */
+public class LeftRightViewOfTreeRec {
+
+	Node root, root1;
+	static class Node{
+		int data;
+		Node left,right;
+		Node(int d){
+			data = d;
+			left = right = null;
+		}
+	}
+	   static int  left_max_level = 0 ,right_max_level = 0; 
+	    
+		static void rightViewUtil(Node node, int level) { 
+	  
+	        if (node == null)  
+	            return; 
+	  
+	        if (right_max_level < level) { 
+	            System.out.print(node.data + " "); 
+	            right_max_level = level; 
+	        } 
+	  
+	        rightViewUtil(node.right, level + 1); 
+	        rightViewUtil(node.left, level + 1); 
+	    } 
+		
+	    void leftViewUtil(Node node, int level) 
+	    { 
+	        if (node==null) return; 
+	  
+	        if (left_max_level < level) 
+	        { 
+	            System.out.print(node.data+" "); 
+	            left_max_level = level; 
+	        } 
+	        leftViewUtil(node.left, level+1); 
+	        leftViewUtil(node.right, level+1); 
+	    } 
+	    public static void main(String[] args) {
+	    	LeftRightViewOfTreeRec tree = new LeftRightViewOfTreeRec();
+			tree.root1 = new Node(1);
+			tree.root1.left = new Node(2);
+			tree.root1.right = new Node(3); 
+			tree.root1.left.left = new Node(4); 
+			tree.root1.left.left.left = new Node(5); 
+			tree.root1.left.left.right= new Node(6); 
+			
+			
+			  tree.root = new Node(1); 
+		        tree.root.left = new Node(2); 
+		        tree.root.right = new Node(3); 
+		        tree.root.left.left = new Node(4); 
+		        tree.root.left.right = new Node(5); 
+		        tree.root.right.left = new Node(6); 
+		        tree.root.right.right = new Node(7); 
+		        tree.root.right.left.right = new Node(8);
+		        System.out.println("Right View Of tree:::");
+		        rightViewUtil(tree.root,1);
+		        System.out.println();
+		        System.out.println("Left View Of tree:::");
+		        tree.leftViewUtil(tree.root1, 1);
+	    }
+}
