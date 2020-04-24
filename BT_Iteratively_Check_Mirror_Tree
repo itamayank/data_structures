@@ -1,0 +1,80 @@
+package mayank.BinaryTree;
+
+import java.util.Stack;
+
+
+public class IterativelyCheckMirrorTree {
+
+	Node root1,root2;
+	static class Node{
+		int data;
+		Node left,right;
+		Node(int d){
+			data = d;
+		}
+	}
+	Stack<Integer>st1 = new Stack<>();
+	Stack<Integer>st2 = new Stack<>();
+	
+	void inorder(Node root ,int treeNumber) {
+		if(root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		Node curr = root;
+		
+		while(curr!=null || st.size() > 0 ) {
+			while(curr!=null) {
+				st.push(curr);
+				curr = curr.left;
+			}
+			curr = st.pop();
+			System.out.print(curr.data+" ");
+			if(treeNumber == 1) {
+				st1.push(curr.data);
+			}else {
+				st2.push(curr.data);
+			}
+			curr = curr.right;
+		}
+	}
+	
+	boolean ismirror() {
+		if(st1.size() != st2.size()) {
+			return false;
+		} 
+		int i=1;
+		while(i!=st1.size()) {
+			if(st1.get(i-1)!=st2.get(st2.size()-i)) {
+				return false;
+			}
+			i++;
+		}
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		IterativelyCheckMirrorTree tree = new IterativelyCheckMirrorTree();
+		tree.root1 = new Node(1);
+		tree.root2 = new Node(1);
+		
+		tree.root1.left = new Node(2);
+		tree.root1.right = new Node(3); 
+		tree.root1.left.left = new Node(4); 
+		tree.root1.left.right = new Node(5); 
+  
+		tree.root2.left = new Node(3); 
+		tree.root2.right = new Node(2); 
+		tree.root2.right.left = new Node(5); 
+		tree.root2.right.right = new Node(4); 
+		
+		tree.inorder(tree.root1,1);
+		System.out.println();
+		tree.inorder(tree.root2,2);
+		System.out.println();
+		System.out.println(tree.st1);
+		System.out.println(tree.st2);
+		
+		System.out.println(tree.ismirror());
+	}
+}
