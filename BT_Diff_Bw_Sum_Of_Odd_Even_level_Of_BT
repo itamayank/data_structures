@@ -1,0 +1,89 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * @author Mayank
+ *
+ */
+public class DiffBwSumOfOddEenLevelsOfBT {
+	static class Node  
+	{ 
+	    int data; 
+	    Node left, right; 
+	   
+	    Node(int item)  
+	    { 
+	        data = item; 
+	        left = right; 
+	    } 
+	} 
+	   
+	    Node root; 
+	   
+	    int getLevelDiff(Node node)  
+	    { 
+	        if (node == null) 
+	            return 0; 
+	  
+	        return node.data - getLevelDiff(node.left) -  getLevelDiff(node.right); 
+	    } 
+	    static int evenOddLevelDifference(Node root) 
+	      { 
+	             if (root == null) 
+	                 return 0; 
+	  
+	             Queue<Node> q = new LinkedList<>(); 
+	             q.add(root); 
+	  
+	             int level = 0;  
+	             int evenSum = 0, oddSum = 0; 
+	  
+		             while (q.size() != 0) { 
+	                   int size = q.size(); 
+	                   level++; 
+	                     
+	                   while (size > 0) { 
+	                          Node temp = q.remove(); 
+	  
+	                          if (level % 2 == 0) {
+	                              evenSum += temp.data; 
+	                          System.out.print(temp.data+"");
+	                          }
+	                          else {
+	                              oddSum += temp.data; 
+	                              System.out.print(temp.data+"");
+	                          }
+	  
+	                          if (temp.left != null) 
+	                              q.add(temp.left); 
+	                             
+	                          if (temp.right != null) 
+	                              q.add(temp.right); 
+	                          size--; 
+	                   } 
+	                   System.out.println();
+	             } 
+	             return Math.abs (oddSum - evenSum);   
+	      } 
+	    public static void main(String args[])  
+	    { 
+	        DiffBwSumOfOddEenLevelsOfBT tree = new DiffBwSumOfOddEenLevelsOfBT(); 
+	        tree.root = new Node(5); 
+	        tree.root.left = new Node(2); 
+	        tree.root.right = new Node(6); 
+	        tree.root.left.left = new Node(1); 
+	        tree.root.left.right = new Node(4); 
+	        tree.root.left.right.left = new Node(3); 
+	        tree.root.right.right = new Node(8); 
+	        tree.root.right.right.right = new Node(9); 
+	        tree.root.right.right.left = new Node(7); 
+	        System.out.println("recursive approach ->>>> "+tree.getLevelDiff(tree.root)); 
+	        System.out.println("iterative approach ->>>>" +  evenOddLevelDifference(tree.root)); 
+	   
+	    }
+}
