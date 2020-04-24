@@ -1,0 +1,92 @@
+package mayank.BinaryTree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class PrintCousins {
+	static class Node  
+	{  
+	    int data;  
+	    Node left, right;  
+	} 
+	static Node newNode(int item)  
+	{  
+	    Node temp = new Node();  
+	    temp.data = item;  
+	    temp.left = null; 
+	    temp.right = null;  
+	    return temp;  
+	}
+
+	static void printCousins(Node root, Node node_to_find) {
+		if (root == node_to_find) {
+			System.out.print("Cousin Nodes :" + " None" + "\n");
+			return;
+		}
+		Queue<Node> q = new LinkedList<Node>();
+		boolean found = false;
+		int size = 0;
+		Node p = null;
+		q.add(root);
+
+		while (!q.isEmpty() && found == false) {
+
+			size = q.size();
+			while (size -- > 0) {
+				p = q.remove();
+
+				if ((p.left == node_to_find || p.right == node_to_find)) {
+					found = true;
+				} else
+                       { 
+							   if (p.left != null) 
+							       q.add(p.left); 
+					  
+							   if (p.right != null)
+						           q.add(p.right);
+				           }
+
+			           }
+		          }
+			if (found == true) {
+			System.out.print("Cousin Nodes : ");
+			size = q.size();
+
+			if (size != 0)
+				System.out.print("None");
+
+			for (int i = 0; i < size; i++) {
+				p =q.poll();
+				System.out.print(p.data + " ");
+			}
+		}
+			else {
+			System.out.print("Node not found");
+		}
+		System.out.println("");
+		return;
+	}
+	  
+	public static void main(String[] args)  
+	{  
+	    Node root = newNode(1);  
+	    root.left = newNode(2);  
+	    root.right = newNode(3);  
+	    root.left.left = newNode(4);  
+	    root.left.right = newNode(5);  
+	    root.left.right.right = newNode(15);  
+	    root.right.left = newNode(6);  
+	    root.right.right = newNode(7);  
+	    root.right.left.right = newNode(8); 
+	    root.left.left.left = newNode(10);
+	    root.left.left.right = newNode(11);
+	    root.left.right.left = newNode(12);
+	    root.left.right.right = newNode(13);
+	    root.right.left.left = newNode(14);
+	    root.right.left.right = newNode(15);
+	    root.right.right.left = newNode(16);
+	    root.right.right.right = newNode(17);
+	  
+	    printCousins(root, root.left.left.left);  
+	}
+}
