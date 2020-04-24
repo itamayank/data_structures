@@ -1,0 +1,75 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import java.util.Vector;
+
+/**
+ * @author Mayank
+ *
+ */
+public class DiagonalTraversalOfTree {
+
+	    static class Node{ 
+	        int data; 
+	        Node left; 
+	        Node right; 
+	                
+	        Node(int data) { 
+	            this.data=data; 
+	            left = null; 
+ 	            right =null; 
+	         } 
+	    } 
+
+	    static void getDiagonalOrder(Node root, int hd, 
+                TreeMap<Integer,Vector<Integer>> m) { 
+	    	
+	    	if(root == null) {
+	    		return;
+	    	}
+	    	Vector<Integer> get = m.get(hd);
+	    	if(get==null) {
+	    		get = new Vector<Integer>();
+	    		get.add(root.data);
+	    	}else {
+	    		get.add(root.data);
+	    	}
+	    	m.put(hd, get);
+	    	
+	    	// Increase the vertical distance if left child 
+	    	getDiagonalOrder(root.left,hd+1,m);
+	    	
+	    	// Vertical distance remains same for right child
+	    	getDiagonalOrder(root.right,hd,m);
+	    }
+		   
+	    static void printDiagonalOrder(Node root) 
+	    { 
+	        TreeMap<Integer,Vector<Integer>> m = new TreeMap<>(); 
+	        int hd =0; 
+	        getDiagonalOrder(root,hd,m); 
+	          
+		        for (Entry<Integer, Vector<Integer>> entry : m.entrySet()) 
+	        { 
+	            System.out.println(entry.getValue()); 
+	        } 
+	    } 
+	    public static void main(String[] args) { 
+	          
+	        Node root = new Node(8); 
+	        root.left = new Node(3); 
+	        root.right = new Node(10); 
+	        root.left.left = new Node(1); 
+	        root.left.right = new Node(6); 
+	        root.right.right = new Node(14); 
+	        root.right.right.left = new Node(13); 
+	        root.left.right.left = new Node(4); 
+	        root.left.right.right = new Node(7); 
+	          
+	        printDiagonalOrder(root);	  
+} 
+}
