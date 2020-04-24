@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+import java.util.ArrayList;
+
+/**
+ * @author Mayank
+ *
+ */
+public class PrintPathFromRoot {
+
+	static class Node{
+		int data;
+		Node left,right;
+		Node(int d){
+			data = d;
+			left=right=null;
+		}
+	}
+	public static boolean hasPath(Node root, ArrayList<Integer> arr, int x)  
+    {  
+        if (root==null)  
+            return false;  
+        
+        arr.add(root.data);      
+        
+        if (root.data == x)      
+            return true;  
+        
+        if (hasPath(root.left, arr, x) ||  
+            hasPath(root.right, arr, x))  
+            return true; 
+        
+        arr.remove(arr.size()-1); 
+        return false;              
+    }  
+	 public static void printPath(Node root, int x)  
+    {  
+        ArrayList<Integer> arr=new ArrayList<>(); 
+      
+        if (hasPath(root, arr, x))  
+        {  
+            for (int i=0; i<arr.size()-1; i++)      
+                System.out.print(arr.get(i)+"->"); 
+            System.out.print(arr.get(arr.size() - 1));     
+        }  
+        else
+            System.out.print("No Path");  
+    }  
+  
+    public static void main(String args[]) { 
+        Node root=new Node(1); 
+        root.left = new Node(2);  
+        root.right = new Node(3);  
+        root.left.left = new Node(4);  
+        root.left.right = new Node(5);  
+        root.right.left = new Node(6);  
+        root.right.right = new Node(7);  
+        int x=5; 
+        printPath(root, x);
+        System.out.println();
+    }
+}
+
+
+/*static void printPaths(Node node)  
+    { 
+        int path[] = new int[1000]; 
+        printPathsRecur(node, path, 0); 
+    } 
+    static void printPathsRecur(Node node, int path[], int pathLen)  
+    { 
+        if (node == null) 
+            return; 
+    
+        path[pathLen] = node.data;                              //print all paths from root
+        pathLen++;  
+   
+        if (node.left == null && node.right == null) 
+            printArray(path, pathLen); 
+        else
+            {  
+            printPathsRecur(node.left, path, pathLen); 
+            printPathsRecur(node.right, path, pathLen); 
+        } 
+    } 
+    static void printArray(int ints[], int len)  
+    { 
+        int i; 
+        for (i = 0; i < len; i++)  
+            System.out.print(ints[i] + " "); 
+        System.out.println(""); 
+    } 
+   
+   *         printPaths(root); 
+
+   */
