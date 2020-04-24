@@ -1,0 +1,252 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+import java.util.Stack;
+
+/**
+ * @author Mayank
+ *
+ */
+public class IterativeTreeTraversal {
+
+	Node root1,root2;
+	public static class Node{
+		int data;
+		Node left, right;
+		Node(int d){
+			data = d;
+			left = right = null;
+		}
+	}
+	void inorder(Node root) {
+		if (root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		Node curr = root;
+		
+		while(curr!=null || st.size() > 0) {
+			while(curr!=null) {
+				st.push(curr);
+				curr = curr.left;
+			}
+			curr = st.pop();
+		    System.out.print(curr.data+" ");
+		     curr = curr.right;
+		}
+	}
+	
+	void preorder(Node root) {
+		if (root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		st.push(root);
+		
+		   while(!st.isEmpty()) {
+			   Node temp = st.pop();
+			   System.out.print(temp.data+" ");
+			   
+			   
+			   if(temp.right!=null) {
+				   st.push(temp.right);
+			   }
+			   if(temp.left!=null) {
+				   st.push(temp.left);
+			   }
+		   }
+	}
+	
+	void postorder(Node root) {
+		if (root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		Stack<Node> st2 = new Stack<Node>();
+		st.push(root);
+		
+		while(!st.isEmpty()) {
+			Node temp = st.pop();
+			st2.push(temp);
+			
+			if(temp.left!=null) {
+				st.push(temp.left);
+			}
+			if(temp.right!=null) {
+				st.push(temp.right);
+			}
+		}
+		while(!st2.isEmpty()) {
+			Node temp = st2.pop();
+			System.out.print(temp.data+" ");
+		}
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		IterativeTreeTraversal tree = new IterativeTreeTraversal();
+		tree.root1 = new Node(1);
+		tree.root2 = new Node(1);
+		
+		tree.root1.left = new Node(2);
+		tree.root1.right = new Node(3); 
+		tree.root1.left.left = new Node(4); 
+		tree.root1.left.right = new Node(5); 
+  
+		tree.root2.left = new Node(3); 
+		tree.root2.right = new Node(2); 
+		tree.root2.right.left = new Node(5); 
+		tree.root2.right.right = new Node(4); 
+		
+		System.out.println("Inorder Traversal of Tree 1:::");
+		tree.inorder(tree.root1);
+		System.out.println();
+		System.out.println("Pre order Traversal of Tree 1:::");
+		tree.preorder(tree.root1);
+		System.out.println();
+		System.out.println("Post order Traversal of Tree 1:::");
+		tree.postorder(tree.root1);
+		System.out.println();
+		
+		
+		System.out.println("Inorder Traversal of Tree 2:::");
+		tree.inorder(tree.root2);
+		System.out.println();
+		System.out.println("Pre order Traversal of Tree 2:::");
+		tree.preorder(tree.root2);
+		System.out.println();
+		System.out.println("Post order Traversal of Tree 2:::");
+		tree.postorder(tree.root2);
+		System.out.println();
+		
+	}
+}
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+import java.util.Stack;
+
+/**
+ * @author Mayank
+ *
+ */
+public class IterativeTreeTraversal {
+
+	Node root1,root2;
+	public static class Node{
+		int data;
+		Node left, right;
+		Node(int d){
+			data = d;
+			left = right = null;
+		}
+	}
+	void inorder(Node root) {
+		if (root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		Node curr = root;
+		
+		while(curr!=null || st.size() > 0) {
+			while(curr!=null) {
+				st.push(curr);
+				curr = curr.left;
+			}
+			curr = st.pop();
+		    System.out.print(curr.data+" ");
+		     curr = curr.right;
+		}
+	}
+	
+	void preorder(Node root) {
+		if (root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		st.push(root);
+		
+		   while(!st.isEmpty()) {
+			   Node temp = st.pop();
+			   System.out.print(temp.data+" ");
+			   
+			   
+			   if(temp.right!=null) {
+				   st.push(temp.right);
+			   }
+			   if(temp.left!=null) {
+				   st.push(temp.left);
+			   }
+		   }
+	}
+	
+	void postorder(Node root) {
+		if (root == null) {
+			return;
+		}
+		Stack<Node> st = new Stack<Node>();
+		Stack<Node> st2 = new Stack<Node>();
+		st.push(root);
+		
+		while(!st.isEmpty()) {
+			Node temp = st.pop();
+			st2.push(temp);
+			
+			if(temp.left!=null) {
+				st.push(temp.left);
+			}
+			if(temp.right!=null) {
+				st.push(temp.right);
+			}
+		}
+		while(!st2.isEmpty()) {
+			Node temp = st2.pop();
+			System.out.print(temp.data+" ");
+		}
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		IterativeTreeTraversal tree = new IterativeTreeTraversal();
+		tree.root1 = new Node(1);
+		tree.root2 = new Node(1);
+		
+		tree.root1.left = new Node(2);
+		tree.root1.right = new Node(3); 
+		tree.root1.left.left = new Node(4); 
+		tree.root1.left.right = new Node(5); 
+  
+		tree.root2.left = new Node(3); 
+		tree.root2.right = new Node(2); 
+		tree.root2.right.left = new Node(5); 
+		tree.root2.right.right = new Node(4); 
+		
+		System.out.println("Inorder Traversal of Tree 1:::");
+		tree.inorder(tree.root1);
+		System.out.println();
+		System.out.println("Pre order Traversal of Tree 1:::");
+		tree.preorder(tree.root1);
+		System.out.println();
+		System.out.println("Post order Traversal of Tree 1:::");
+		tree.postorder(tree.root1);
+		System.out.println();
+		
+		
+		System.out.println("Inorder Traversal of Tree 2:::");
+		tree.inorder(tree.root2);
+		System.out.println();
+		System.out.println("Pre order Traversal of Tree 2:::");
+		tree.preorder(tree.root2);
+		System.out.println();
+		System.out.println("Post order Traversal of Tree 2:::");
+		tree.postorder(tree.root2);
+		System.out.println();
+		
+	}
+}
