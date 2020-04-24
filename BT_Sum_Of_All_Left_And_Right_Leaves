@@ -1,0 +1,63 @@
+/**
+ * 
+ */
+package mayank.BinaryTree;
+
+/**
+ * @author Mayank
+ *
+ */
+
+      //
+
+public class SumOfAllLeftAndRightLeaves {
+
+	Node root;
+	static class Node  
+	{ 
+	    int data; 
+	    Node left, right; 
+	   
+	    Node(int item) { 
+	        data = item; 
+	        left = right = null; 
+	    } 
+	} 
+	static class Sum{
+		static int sum =0;
+	}
+	 void leftLeavesSumRec(Node node, boolean isleft, Sum summ)  
+	    { 
+	        if (node == null) 
+	            return; 
+	   
+	        if (node.left == null && node.right == null && isleft)               // tc O(n)
+	            Sum.sum= Sum.sum + node.data; 
+	   
+	        leftLeavesSumRec(node.left, true, summ); 
+	        leftLeavesSumRec(node.right, false, summ); 
+	    } 
+	 int leftLeavesSum(Node node)  
+	    { 
+	        Sum suum = new Sum(); 
+	          
+	        leftLeavesSumRec(node, false, suum); 
+	   
+	        return suum.sum; 
+	    } 
+	 public static void main(String args[])  
+	    { 
+		 SumOfAllLeftAndRightLeaves tree = new SumOfAllLeftAndRightLeaves(); 
+	        tree.root = new Node(20); 
+	        tree.root.left = new Node(9); 
+	        tree.root.right = new Node(49); 
+	        tree.root.left.right = new Node(12); 
+	        tree.root.left.left = new Node(5); 
+	        tree.root.right.left = new Node(23); 
+	        tree.root.right.right = new Node(52); 
+	        tree.root.left.right.right = new Node(12); 
+	        tree.root.right.right.left = new Node(50); 
+	         
+           System.out.println(tree.leftLeavesSum(tree.root)); 
+	    } 
+}
