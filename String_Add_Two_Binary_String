@@ -1,0 +1,82 @@
+package mayank.String;
+
+import java.util.Arrays;
+
+public class AddTwoBinaryString {
+		
+	static String addBinary(String a, String b) 
+		{ 
+			
+			String result = ""; 
+			
+			int s = 0;		 
+
+			int i = a.length() - 1, j = b.length() - 1; 
+			
+			
+			while (i >= 0 || j >= 0 || s == 1) 
+			{ 
+				
+				s += ((i >= 0)? a.charAt(i) - '0': 0); 
+				s += ((j >= 0)? b.charAt(j) - '0': 0); 
+
+				result += (char)(s % 2 + '0'); 
+
+				s /= 2; 
+				
+				i--; j--; 
+			} 
+			
+		return result; 
+		} 
+	
+	static int[] addBinary(int a[], int b[]) {
+		int c[] = new int[Math.max(a.length,b.length)+1];
+		
+		int currA = a.length-1;
+		int currB = b.length-1;
+		int carry = 0;
+		
+		for(int i= c.length-1; i>=0; i--) {
+			int sum = 0;
+			
+			if(currA >= 0) {
+				sum += a[currA];
+				currA--;
+			}
+			
+			if(currB >= 0) {
+				sum += b[currB];
+				currB--;
+			}
+			
+			c[i] = (carry + sum ) % 2;
+			carry = (carry + sum) / 2;
+		}
+		
+		return c;
+	}
+
+		public static void main(String args[]) 
+		{ 
+			String a = "10101",b="11100"; 
+			
+			System.out.print(addBinary(a, b)); 
+			
+			int A[] = new int[a.length()];
+			int B[] = new int[b.length()];
+			
+			for(int i=0; i < a.length(); i++) {
+				A[i] = Integer.parseInt(String.valueOf(a.charAt(i)));
+			}
+			for(int i=0; i < b.length(); i++) {
+				B[i] = Integer.parseInt(String.valueOf(b.charAt(i)));
+			}
+			
+			System.out.println();
+			System.out.println(Arrays.toString(addBinary(A, B)));              //reverse array
+			
+			
+			
+		} 
+	} 
