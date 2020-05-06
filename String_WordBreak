@@ -1,0 +1,50 @@
+package mayank.String;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class WordBreak {
+
+	
+	
+	public static int searchWord(List<String> list ,String str) {
+		int j=0;
+		for(String src :list) {
+			
+			for(int i=0; i<src.length();i++)  {
+			if(src.charAt(i)==str.charAt(i)) {
+			
+				if(src.length()-1 == i) {
+					System.out.println(src);
+				   break;
+				}
+			}else {
+				break;
+			 }
+		}
+		}
+		if(str.length()-1>0) {
+			j++;
+			return searchWord(list, str.substring(j));
+		}
+		return 0;
+	}
+	
+	public static void main(String[] args) {
+		
+	String a = "finishellonestmayank";
+	List<String> list = new ArrayList<String>();
+	list.add("finish");
+	list.add("she");
+	list.add("hello");
+	list.add("sun");
+	list.add("on");
+	list.add("test");
+	list.add("mayank");
+	list.add("baby");
+	list.add("nest");
+	
+	searchWord(list, a);
+	
+	}
+}
