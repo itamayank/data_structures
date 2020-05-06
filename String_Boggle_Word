@@ -1,0 +1,65 @@
+package mayank.String;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+//find all possible words that can be made using characters of - char boggle[][]
+
+public class BoggleWord {
+	  
+	public static void main(String[] args) {
+	        String dictionary[] = {"GEEKS", "FOR", "QUIZ","FROM", "GO","ICE"};
+	        char boggle[][] = {{'K','G','Z','O','R'},{'U','M','E','I'},{'Q','S','E','F'}};
+	        List<Character> chars = new ArrayList<Character>();
+	        int k =0;
+	      
+	        for (char[] c : boggle) {
+	            for (char d : c) {
+	                chars.add(d);
+	            }
+	        }
+	        
+	        for(int i=0; i < dictionary.length; i++) {
+	        	String str = dictionary[i];
+	        	
+	        	k=0;
+	        
+	        for(int j=0;j < str.length(); j++) {
+	        	 
+	        	 if(chars.contains(str.charAt(j))) {
+	        		k++;
+	        	 }
+	        	 if(k==str.length()) {
+	        		 System.out.println(str);
+	        		 break;
+	        	 }
+	        	 
+	        	 
+	        	 /*if(str.contains(String.valueOf(chars.get(j)))){
+	        		 k++;
+	        		 if(str.length()-1 == k) {
+	        			 System.out.println(str);;
+	        			 break;
+	        		}
+	        	 }*/
+	          }
+	       }
+	    }
+     }
+
+
+
+
+/*for (int i = 0; i < dictionary.length; i++) {
+    String name=dictionary[i];
+    for (int j = 0; j < chars.size(); j++) {
+        if (name.contains(String.valueOf(chars.get(j)))) {
+name=name.replaceFirst(String.valueOf(chars.get(j)), "");
+            if (name.trim().length()==0) {
+                System.out.println(dictionary[i]);
+                break;
+            }
+        }
+    }
+}*/
