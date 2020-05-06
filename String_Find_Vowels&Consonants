@@ -1,0 +1,26 @@
+package mayank.String;
+
+public class VowelsConstant {
+
+	public static void main(String[] args) {
+		 int vowelLength;
+		 int consonantLength ;
+		String a = "Congratulations on your success";
+		String b[] =a.split("\\s");
+		
+		for(String x : b) {
+			vowelLength = 0;
+			consonantLength = 0;
+		for(int i=0; i<x.length(); i++) {
+		if(x.charAt(i)=='a' || x.charAt(i)=='e' || x.charAt(i)=='i'||x.charAt(i)=='o'||x.charAt(i)=='u' ) {
+			vowelLength++;
+		}
+		else {
+			consonantLength++;
+		}
+		}System.out.println("vowels in "+x+ " = " +vowelLength);
+		System.out.println("consonants in "+x+ " = "+ consonantLength);
+	 }
+
+}
+}
