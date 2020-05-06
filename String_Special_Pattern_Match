@@ -1,0 +1,62 @@
+/**
+ * 
+ */
+package mayank.String;
+
+import java.util.HashMap;
+
+/**
+ * @author Mayank
+ *
+ */
+public class SpecialPatternMatch {
+
+	
+/*	Input:  
+		dict = ["abb", "abc", "xyz", "xyy"];
+		pattern = "foo"
+		Output: [xyy abb]
+		Explanation: 
+		xyy and abb have same character at index 1 and 2 like the pattern*/
+	
+	 static String encodeString(String str) 
+	    { 
+	        HashMap<Character, Integer> map = new HashMap<>(); 
+	        String res = ""; 
+	        int i = 0; 
+	  
+		        char ch; 
+	        for (int j = 0; j < str.length(); j++) { 
+	            ch = str.charAt(j); 
+	  
+	            if (!map.containsKey(ch)) 
+	                map.put(ch, i++); 
+	  
+	            res += map.get(ch); 
+	        } 
+	  
+	        return res; 
+	    } 
+	  
+	    static void findMatchedWords(String[] dict, String pattern) 
+	    { 
+	        int len = pattern.length(); 
+	  
+	        String hash = encodeString(pattern); 
+	  
+	        for (String word : dict) { 
+	            if (word.length() == len && encodeString(word).equals(hash)) 
+	                System.out.print(word + " "); 
+	        } 
+	    } 
+	  
+	    // Driver code 
+	    public static void main(String args[]) 
+	    { 
+	        String[] dict = { "abbea", "abc", "xyz", "xyy" }; 
+	        String pattern = "foo"; 
+	  
+	        findMatchedWords(dict, pattern); 
+	    } 
+	  
+}
