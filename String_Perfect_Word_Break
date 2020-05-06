@@ -1,0 +1,49 @@
+package mayank.String;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PerfectWordBreak {
+	public static void main(String[] args) {
+        String a = "finishellofdhelosajaydsfs";
+        List<String> b = new ArrayList<String>();
+        b.add("helo");
+        b.add("she");
+        b.add("hello");
+        b.add("ajay");
+        b.add("arun");
+        b.add("mayank");
+        b.add("finish");
+        b.add("shell");
+        PerfectWordBreak t = new PerfectWordBreak();
+        
+       // System.out.println(a.contains("hello"));
+        t.match(b, a);
+    }
+    public String match(List<String> src, String tar) {
+        try {
+            for (String s : src) {
+                String finalStr = "";
+                if (tar.length() > 0) {
+                    if (s.charAt(0) == tar.charAt(0)) {
+                        for (int i = 0; i < s.length(); i++) {
+                            if (s.charAt(i) != tar.charAt(i)) {
+                                break;
+                            } else {
+                                finalStr = finalStr + tar.charAt(i);
+                                if (s.length() - 1 == i) {
+                                    System.out.println(finalStr);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        if (tar.length() > 0) {
+            return match(src, tar.substring(1, tar.length()));
+        }
+        return "";
+    }
+}
