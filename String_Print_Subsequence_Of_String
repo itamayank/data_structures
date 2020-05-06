@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package mayank.String;
+
+/**
+ * @author Mayank
+ *
+ */
+public class PrintSubsequencesOfString {
+	
+   /*A subsequence is a sequence that can be derived from another sequence by
+    *  deleting some or no elements without changing the order of the remaining elements*/	
+	
+	public static void printSubSeq(String sub, String ans) {
+
+		if (sub.length() == 0) {
+			System.out.print(ans + " ");
+			return;
+		}
+
+		// First character of sub
+		char ch = sub.charAt(0);
+
+		String ros = sub.substring(1);
+
+		// Including first character
+		printSubSeq(ros, ans + ch);
+		
+		// Excluding first character
+		printSubSeq(ros, ans);
+	}
+
+	// Driver code
+	public static void main(String[] args) {
+		String str = "abcd";
+		printSubSeq(str, "");
+	}
+}
