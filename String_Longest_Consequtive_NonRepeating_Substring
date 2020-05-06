@@ -1,0 +1,42 @@
+package mayank.String;
+
+public class LongestConsequtiveNonRepeatingSubstring {
+
+	
+	public static void main(String[] args) {
+		String s = "aabbcdefbabcdef";          //geeksforgeeks
+		int len = s.length();
+		String res = longestUniqueSubstr(s,len);
+		System.out.println(res);
+	}
+
+	private static String longestUniqueSubstr(String s, int len) {
+		
+		int maxSize = 0;
+		String newStr = "";
+		String res = "";
+		
+		for(int i=0; i<len; i++) {
+			String st = String.valueOf(s.charAt(i));
+			
+			if(!newStr.contains(st)) {
+				newStr += st;
+				
+				if(newStr.length() > maxSize) {
+					maxSize = newStr.length();
+					res = newStr;
+				}
+			}else {
+				newStr = String.valueOf(newStr.charAt(newStr.length()-1));
+				if(!newStr.equals(st)) {
+					newStr += st;
+				}else {
+					
+				}
+			}
+		}
+		
+		return res;
+	}
+	
+}
