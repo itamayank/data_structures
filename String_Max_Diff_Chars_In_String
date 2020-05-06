@@ -1,0 +1,38 @@
+package mayank.String;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class MaxDiffCharsInString {
+	//to find the word with maximum number of different characters first split the string then convert it into char
+	//then put char into set (to get unique characters), then compare size
+
+
+	public static void main(String[] args) {
+		String value =" ";
+		String originalValue = " ";
+		char[] c ;
+		int total = 0;
+		Set <String> set = new HashSet<String>();
+		String a = "Congratulations on your successsssuuuuusssss";
+		String b[] = a.split("\\s");
+		for(int i=0; i<b.length; i++) {
+			value = b[i];
+		c = b[i].toCharArray();
+		
+		set = new HashSet<String>();
+		
+		for(int j=0; j<value.length(); j++) {
+		char chr = c[j];
+				set.add(Character.toString(chr));
+		
+		if(total<set.size()) {
+			total = set.size();
+			originalValue = value;
+		}
+
+	}}
+		System.out.println(originalValue);
+
+}
+}
