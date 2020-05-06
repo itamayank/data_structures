@@ -1,0 +1,62 @@
+package mayank.String;
+
+public class StringDecode3 {
+	
+	
+	/*Input1; 0123210
+	Output: 0111000, NONE
+
+	Explanation for first output
+	S[0] = 0, 
+	P[1] = S[1] + S[0], S[1] = 1
+	P[2] = S[2] + S[1] + S[0], S[2] = 1
+	P[3] = S[3] + S[2] + S[1], S[3] = 1
+	P[4] = S[4] + S[3] + S[2], S[4] = 0 
+	P[5] = S[5] + S[4] + S[3], S[5] = 0
+	P[6] = S[6] + S[5] + S[4], S[6] = 0
+
+	Explanation for second output 
+	S[0] = 1,
+	P[1] = S[1] + S[0], S[1] = 0
+	P[2] = s[2] + S[1] + S[0], S[2] = 1
+	P[3] = S[3] + S[2] + S[1], S[3] = 2, not a binary character so NONE.*/
+
+	
+	static void decodeUtil(int P[], int n, int first) 
+	{ 
+	    int S[] = new int[n];  // array to store decoded bit pattern 
+	    S[0] = first;  // The first number is always the given number 
+	  
+	    int second = 0;  // Initialize second 
+	  
+	    for (int i = 1; i < n; i++) 
+	    { 
+	        S[i] = P[i] -  first - second; 
+	        if (S[i] != 1 && S[i] != 0) 
+	        { 
+	            System.out.println("NONE");
+	        } 
+	        second = first; 
+	        first = S[i]; 
+	    } 
+	  
+	    for (int i = 0; i < n; i++) {
+	    	
+	       System.out.print(S[i]);
+	} 
+	    System.out.println();
+	}
+	  
+	static void decode(int P[], int n) 
+	{ 
+	    decodeUtil(P, n, 0); 
+	    //decodeUtil(P, n, 1); 
+	} 
+	  
+	 public static void main(String[] args) {
+		 int P[] = {0, 1, 2, 3, 2, 1, 0}; 
+		int n = P.length;
+		decode(P, n); 
+	} 
+}
+
