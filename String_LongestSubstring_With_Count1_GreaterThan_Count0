@@ -1,0 +1,57 @@
+package mayank.String;
+import java.util.HashMap; 
+
+public class LongestSubstringWithCount1GreaterThan0 {
+	// Java program to find largest substring 
+	// having count of 1s more than count 
+	// count of 0s. 
+
+		static int findLongestSub(String bin) 
+		{ 
+			int n = bin.length(), i; 
+
+			int sum = 0; 
+
+			HashMap<Integer, 
+					Integer> prevSum = new HashMap<>(); 
+
+			int maxlen = 0; 
+
+			int currlen; 
+			for (i = 0; i < n; i++) 
+			{ 
+
+				if (bin.charAt(i) == '1') 
+					sum++; 
+				else
+					sum--; 
+
+				if (sum > 0) 
+				{ 
+					maxlen = i + 1; 
+				} 
+
+				else if (sum <= 0) 
+				
+				{ 
+					if (prevSum.containsKey(sum - 1)) 
+					{ 
+						currlen = i - (prevSum.get(sum - 1) == null ? 1 : 
+									prevSum.get(sum - 1)); 
+						maxlen = Math.max(maxlen, currlen); 
+					} 
+				} 
+
+				if (!prevSum.containsKey(sum)) 
+					prevSum.put(sum, i); 
+			} 
+			return maxlen; 
+		} 
+
+		public static void main(String[] args) 
+		{ 
+			String bin = "1010"; 
+			System.out.println(findLongestSub(bin)); 
+		} 
+	} 
+
