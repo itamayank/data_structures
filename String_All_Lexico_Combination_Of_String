@@ -1,0 +1,87 @@
+package mayank.String;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class AllLexicoCombinations {
+	
+	
+
+	static String swap(int start,int end,String str) {
+		char c[]= str.toCharArray();
+		char temp;
+		
+		 temp = c[start];
+		c[start] = c[end];
+		c[end] = temp;
+		
+		return String.valueOf(c);
+	}
+	public static void main(String[] args) {
+		String str = "ABC";
+		String res ="",res2="",res3="";
+		int len = 0,index = 0,i=0,start =1,end = str.length();
+		
+		/*StringBuilder s =new StringBuilder("sdfg");
+		char c = s.charAt(2);
+		s.deleteCharAt(2);
+		System.out.println(s);
+		s.insert(2, c);
+		System.out.println(s);*/
+		
+		List<String> list= new LinkedList<>();
+		
+		while(len!=str.length()) {
+			res = String.valueOf(str.charAt(index));
+			System.out.print(res+" ");
+			if(!list.contains(res)) {
+				list.add(res);
+			}
+			while(i!=str.length()) {
+				if(i!=index) {
+				res = res + String.valueOf(str.charAt(i));
+				System.out.print(res+" ");
+				if(!list.contains(res)) {
+					list.add(res);
+				}
+				}
+				i++;
+			}
+			i=0;
+			res2=res;
+				for(i=index+1;i<res.length()+1;i++) {
+					if(i < res.length()-1) {
+						res = String.valueOf(res.charAt(index)) + res.substring(i+1);
+						System.out.print(res+" ");
+						if(!list.contains(res)) {
+							list.add(res);
+						}
+						res3=res;
+			}     if(i == res.length()) {
+					res = String.valueOf(res2.charAt(0)) +String.valueOf(res2.charAt(res2.length()-1));
+					if(!res3.equals(res))
+					System.out.print(res+" ");
+					if(!list.contains(res)) {
+						list.add(res);
+					}
+                          break;
+					}
+				}
+			index++;
+			i=0;
+			while(start!=res2.length()-1) {
+				res = swap(start,end-1,res2);
+				System.out.print(res+" ");
+				if(!list.contains(res)) {
+					list.add(res);
+				}
+				start++;
+			}
+			start=1;
+			len++;
+		}
+		System.out.println();
+		System.out.println(list);
+	}
+	
+}
