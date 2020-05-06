@@ -1,0 +1,72 @@
+/**
+ * 
+ */
+package mayank.String;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
+/**
+ * @author Mayank
+ *
+ */
+public class SmallestWindowContainingallCharOfSameString {
+
+	
+	/*Given a string, find the smallest window length with all distinct characters of the given string.
+	For eg. str = “aabcbcdbca”, then the result would be 4 as of the smallest window will be “dbca”*/
+	
+
+		static final int MAX_CHARS = 256; 
+		
+		static String findSubString(String str) 
+		{ 
+			int n = str.length();
+			HashSet<Character> hs = new HashSet<>();
+			for(int i = 0 ; i < n ; i++)
+				hs.add(str.charAt(i));
+			int dist_count = hs.size();
+			
+			
+			int start = 0, start_index = -1;
+	        int min_len = Integer.MAX_VALUE;
+	        int len_window;
+	        
+	        Map<Character, Integer> map = new HashMap<>();
+	        char[] s = str.toCharArray();
+
+	        for(int i = 0 ; i < n ; i ++)
+	        {
+	        	if (map.containsKey(s[i]))
+					map.put(s[i], map.get(s[i]) + 1);
+				else
+					map.put(s[i], 1);
+	        	
+	        	int temp_dist_count = map.size();
+	        	if(temp_dist_count == dist_count)
+	        	{
+	        		while(map.get(str.charAt(start))>1)
+	        		{
+	        			map.put(s[start], map.get(s[start]) - 1);
+	        			start++;
+	        		}
+	                len_window = i - start + 1;                
+	                if (min_len > len_window)
+	                {
+	                    min_len = len_window;
+	                    start_index = start;
+	                }
+	        	}
+	            }        	
+			return str.substring(start_index, start_index+min_len);	
+		} 
+		
+		public static void main(String args[]) 
+		{ 
+			String str = "aabcbcdbca"; 
+			System.out.println("Smallest window containing all distinct"
+				+ " characters is " + findSubString(str)); 
+		} 
+	} 
+	
