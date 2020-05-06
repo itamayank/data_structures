@@ -1,0 +1,39 @@
+package mayank.String;
+
+import java.util.HashSet;
+
+public class WordBreakRecursion {
+	public void  wordBreak (HashSet<String>dict , String s) {
+		String newWord ="";
+		
+		for(int i=0; i<s.length(); i++)
+		if(dict.contains(s.substring(0, i+1))) {
+			newWord = s.substring(0, i+1);
+			System.out.print(newWord+ " ");
+		  if(s.length()>0){	
+	            wordBreak(dict, s.substring(newWord.length(),s.length()));
+	        }
+		}
+		  if(!s.isEmpty()) {
+			  wordBreak(dict, s.substring(1,s.length()));  
+		  }
+		  
+		  if(s.length()<=0) {
+			  System.exit(0);
+		  
+		  }     
+	}
+	public static void main(String[] args) {
+		WordBreakRecursion e = new WordBreakRecursion();
+		HashSet<String> a = new HashSet<String>();
+		a.add("this");
+		a.add("is");
+		a.add("mayank");
+		a.add("coding");
+		a.add("no");
+		a.add("problem");
+		String  s ="thishelloisabcmayankjainno";
+		
+		e.wordBreak(a,s);
+	}}
+
